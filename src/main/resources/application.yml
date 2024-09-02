@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: google-limit
+            filters:
+              - name: RequestRateLimiter
+                args:
+                  key-resolver: "#{@remoteAddrKeyResolver}"
+                  redis-rate-limiter.replenishRate: 1
+                  redis-rate-limiter.burstCapacity: 2
+                  redis-rate-limiter.requestedTokens: 1
+            uri: https://www.google.com
+            predicates:
+              - Path=/google/**
+          - id: naver-limit
+            filters:
+              - name: RequestRateLimiter
+                args:
+                  key-resolver: "#{@remoteAddrKeyResolver}"
+                  redis-rate-limiter.replenishRate: 1
+                  redis-rate-limiter.burstCapacity: 2
+                  redis-rate-limiter.requestedTokens: 1
+            uri: http://localost:8082
+            predicates:
+              - Path=/naver/**
