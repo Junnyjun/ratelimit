@@ -1,4 +1,10 @@
 spring:
+  data:
+    redis:
+      host: 146.56.115.136
+      database:  0
+      port: 6379
+
   cloud:
     gateway:
       mvc:
