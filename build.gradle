@@ -76,7 +76,7 @@ publishing {
         }
         maven {
             name = 'rate-stg'
-            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit-stg")
+            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit")
             credentials {
                 username = System.getenv("USERNAME")
                 password = System.getenv("TOKEN")
