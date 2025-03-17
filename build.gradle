@@ -53,24 +53,14 @@ tasks.named('test') {
 
 publishing {
     publications {
-        stgPublication(MavenPublication) {
-            from components.java
-            groupId = 'git.io'
-            artifactId = 'stg-ratelimit'   // STG용 artifactId
-            version = project.version
-            pom {
-                name.set("My Artifact for STG")
-                description.set("STG 환경 전용 artifact")
-            }
-        }
         ratePublication(MavenPublication) {
             from components.java
             groupId = 'git.io'
-            artifactId = 'prd-ratelimit'  // RATE용 artifactId
+            artifactId = 'ratelimit'
             version = project.version
             pom {
-                name.set("My Artifact for RATE")
-                description.set("RATE 환경 전용 artifact")
+                name.set("My Artifact")
+                description.set("Ratelimit artifact")
             }
         }
     }
@@ -79,6 +69,14 @@ publishing {
         maven {
             name = 'rate'
             url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
+            }
+        }
+        maven {
+            name = 'rate-stg'
+            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit-stg")
             credentials {
                 username = System.getenv("USERNAME")
                 password = System.getenv("TOKEN")
