@@ -1,4 +1,4 @@
-ame: Publish Stg-Rate Package
+name: Publish Stg-Rate Package
 
 on:
   push:
