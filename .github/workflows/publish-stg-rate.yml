@@ -3,7 +3,7 @@ name: Publish Stg Rate
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
