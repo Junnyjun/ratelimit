@@ -49,3 +49,34 @@ kotlin {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name = 'stg'
+            url = uri('https://example.com/repository/stg')
+        }
+        maven {
+            name = 'rate'
+            url = uri('https://example.com/repository/rate')
+        }
+    }
+}
+
+task publishToMaster {
+    doLast {
+        publishing {
+            repositories {
+                maven {
+                    name = 'master'
+                    url = uri('https://example.com/repository/master')
+                }
+            }
+        }
+    }
+}
