@@ -57,27 +57,23 @@ publishing {
             from components.java
         }
     }
+
+
     repositories {
         maven {
             name = 'stg-rate'
-            url = uri('https://example.com/repository/stg')
+            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
+            }
         }
         maven {
             name = 'rate'
-            url = uri('https://example.com/repository/rate')
-        }
-    }
-}
-
-task publishToMaster {
-    doLast {
-        publishing {
-            repositories {
-                maven {
-                    name = 'master'
-                    url = uri('https://example.com/repository/master')
-
-                }
+            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
             }
         }
     }
