@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'git.io'
-version = '0.0.1-SNAPSHOT'
+project.version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
@@ -53,16 +53,32 @@ tasks.named('test') {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        stgPublication(MavenPublication) {
             from components.java
+            groupId = 'git.io'
+            artifactId = 'stg-ratelimit'   // STG용 artifactId
+            version = project.version
+            pom {
+                name.set("My Artifact for STG")
+                description.set("STG 환경 전용 artifact")
+            }
+        }
+        ratePublication(MavenPublication) {
+            from components.java
+            groupId = 'git.io'
+            artifactId = 'prd-ratelimit'  // RATE용 artifactId
+            version = project.version
+            pom {
+                name.set("My Artifact for RATE")
+                description.set("RATE 환경 전용 artifact")
+            }
         }
     }
-
 
     repositories {
         maven {
             name = 'stg-rate'
-            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit")
+            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit/stg-rate")
             credentials {
                 username = System.getenv("USERNAME")
                 password = System.getenv("TOKEN")
@@ -70,7 +86,7 @@ publishing {
         }
         maven {
             name = 'rate'
-            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit")
+            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit/prd-rate")
             credentials {
                 username = System.getenv("USERNAME")
                 password = System.getenv("TOKEN")
