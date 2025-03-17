@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'git.io'
-project.version = '0.0.1-SNAPSHOT'
+project.version = '0.0.2-SNAPSHOT'
 
 java {
     toolchain {
