@@ -77,16 +77,8 @@ publishing {
 
     repositories {
         maven {
-            name = 'stg-rate'
-            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit/stg-rate")
-            credentials {
-                username = System.getenv("USERNAME")
-                password = System.getenv("TOKEN")
-            }
-        }
-        maven {
             name = 'rate'
-            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit/prd-rate")
+            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit")
             credentials {
                 username = System.getenv("USERNAME")
                 password = System.getenv("TOKEN")
