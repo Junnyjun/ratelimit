@@ -7,11 +7,11 @@ plugins {
 }
 
 group = 'git.io'
-project.version = '0.0.2-SNAPSHOT'
+project.version = '0.0.3-SNAPSHOT'
 
 def library_version() {
     def env = project.findProperty("env") ?: "dev"
-    println "현재 환경: ${env}"
+
 
     // ratelimit가 문자열 "ratelimit"를 의미한다면
     def version = "git.io:ratelimit"
@@ -19,7 +19,7 @@ def library_version() {
     if (env == "dev") {
         version = "${version}-stg"
     }
-
+    println "현재 버전은 ${version} 입니다."
     return version + ":+"
 }
 
