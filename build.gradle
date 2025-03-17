@@ -53,10 +53,20 @@ tasks.named('test') {
 
 publishing {
     publications {
-        ratePublication(MavenPublication) {
+        prdPublication(MavenPublication) {
             from components.java
             groupId = 'git.io'
             artifactId = 'ratelimit'
+            version = project.version
+            pom {
+                name.set("My Artifact")
+                description.set("Ratelimit artifact")
+            }
+        }
+        stgPublication(MavenPublication) {
+            from components.java
+            groupId = 'git.io'
+            artifactId = 'ratelimit-stg'
             version = project.version
             pom {
                 name.set("My Artifact")
@@ -68,14 +78,6 @@ publishing {
     repositories {
         maven {
             name = 'rate'
-            url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit")
-            credentials {
-                username = System.getenv("USERNAME")
-                password = System.getenv("TOKEN")
-            }
-        }
-        maven {
-            name = 'rate-stg'
             url = uri("https://maven.pkg.github.com/Junnyjun/ratelimit")
             credentials {
                 username = System.getenv("USERNAME")
